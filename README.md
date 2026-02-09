@@ -40,29 +40,99 @@
 
 ---
 
+## 📦 依赖要求 / Dependencies
+
+### 系统要求 / System Requirements
+
+#### 必需依赖 / Required Dependencies
+- **Node.js**: >= 14.0.0
+  - 用于运行JavaScript模块
+  - 支持ES6导入语法 (`import`/`export`)
+  - Windows原生模块支持
+
+#### 操作系统 / Operating System
+- **Windows**: Windows 10/11 (win32)
+  - Windows PowerShell (用于执行系统命令)
+  - 管理员权限 (部分操作需要)
+
+#### 可选依赖 / Optional Dependencies
+- **OpenClaw**: OpenClaw系统 (推荐)
+  - 用于技能集成和自动发现
+  - 提供\_meta.json元数据配置
+  - 增强技能管理和调用功能
+
+### 依赖详情 / Dependency Details
+
+#### Node.js模块依赖 / Node.js Module Dependencies
+```javascript
+// 内置模块（无需额外安装）
+import fs from 'fs';        // 文件系统操作
+import path from 'path';    // 路径处理
+```
+
+**说明 / Explanation**: 
+- 使用Node.js内置模块，无需npm install
+- `fs`模块用于读写EXPERIENCES.md经验库
+- `path`模块处理文件路径
+
+#### PowerShell命令依赖 / PowerShell Command Dependencies
+```powershell
+# 进程管理操作
+Get-Process | Stop-Process -Force
+
+# 文件操作
+Copy-Item, Move-Item, Remove-Item
+
+# 系统服务操作
+Get-Service, Start-Service, Stop-Service
+```
+
+**说明 / Explanation**:
+- 依赖Windows PowerShell命令执行
+- 需要Windows原生系统支持
+- 通过Node.js的`child_process`模块调用
+
+---
+
 ## 📥 安装教程
 
-### OpenClaw技能安装
+### 方式一：手动安装（推荐）
 
-#### 1. 下载项目
+#### 1. 检查依赖环境
+```bash
+# 检查Node.js版本
+node --version  # 应该 >= 14.0.0
+
+# 检查PowerShell
+powershell -Command "Get-Host"  # 确认PowerShell可用
+
+# 检查权限（如有需要右键选择"以管理员身份运行"）
+```
+
+#### 2. 下载项目
 ```bash
 git clone https://github.com/VirgoLeo1/windows-control.git
 cd windows-control
 ```
 
-#### 2. 安装到OpenClaw
+#### 3. 复制技能文件
 ```bash
 # 复制到OpenClaw技能目录
+# Windows路径示例：
 xcopy /E /I windows-control "C:\Users\[你的用户名]\.openclaw\workspace\skills\windows-control"
 ```
 
-#### 3. 验证OpenClaw技能
+#### 4. 验证安装
 ```bash
 # 检查技能文件
 dir "C:\Users\[你的用户名]\.openclaw\workspace\skills\windows-control"
+
+# 运行测试验证
+npm test
 ```
 
 应该看到以下文件：
+- ✅ package.json (依赖配置)
 - ✅ SKILL.md (OpenClaw技能定义)
 - ✅ EXPERIENCES.md (经验库)
 - ✅ _meta.json (技能元数据)
@@ -74,19 +144,9 @@ dir "C:\Users\[你的用户名]\.openclaw\workspace\skills\windows-control"
 
 ## 📖 使用教程
 
-### OpenClaw集成使用
+### 基础使用示例
 
-#### 1. 在OpenClaw中使用
-```
-OpenClaw技能: windows-control
-
-功能模式:
-- 自动学习: 使用前读取经验，使用后记录学习
-- 通用控制: 支持进程、文件、服务等操作
-- 自我进化: 每次操作都产生学习价值
-```
-
-#### 2. 基础操作示例
+#### 1. 进程管理
 ```javascript
 import { WindowsController } from './windows-controller.mjs';
 
@@ -95,8 +155,34 @@ const controller = new WindowsController();
 // 停止进程（自动学习）
 await controller.manageProcess('stop', 'testapp');
 
-// 文件操作
+// 系统会自动：
+// 1. 读取相关经验
+// 2. 应用最佳实践
+// 3. 执行操作
+// 4. 记录学习结果
+```
+
+#### 2. 文件操作
+```javascript
+// 复制文件
 await controller.manageFile('copy', 'source.txt', 'destination.txt');
+
+// 删除文件
+await controller.manageFile('delete', 'old_file.txt');
+
+// 移动文件  
+await controller.manageFile('move', 'old_location.txt', 'new_location.txt');
+```
+
+#### 3. 查看学习过程
+```javascript
+// 查看当前经验
+const experiences = controller.readExperiences();
+console.log('已学到的经验:', experiences);
+
+// 获取相关建议
+const suggestions = controller.getSuggestions('进程管理');
+console.log('操作建议:', suggestions);
 ```
 
 ---
@@ -129,6 +215,41 @@ await controller.manageFile('copy', 'source.txt', 'destination.txt');
 - 每次调用都记录经验
 - 智能化决策和建议
 - 持续优化技能性能
+
+---
+
+## 🔧 故障排查 / Troubleshooting
+
+### 依赖问题 / Dependency Issues
+
+#### 问题1: Node.js版本过低
+**错误**: 模块导入语法不支持  
+**解决**: 
+```bash
+# 升级Node.js到14.0+
+# 访问: https://nodejs.org
+node --version  # 验证版本
+```
+
+#### 问题2: PowerShell不响应
+**错误**: child_process无法执行PowerShell命令  
+**解决**:
+```powershell
+# 确认PowerShell可用
+powershell -Command "Get-Host"
+
+# 检查执行策略
+powershell -Command "Get-ExecutionPolicy"
+
+# 如有需要，执行（需管理员权限）
+powershell -Command "Set-ExecutionPolicy RemoteSigned"
+```
+
+#### 问题3: 权限不足
+**错误**: 无法执行某些系统操作  
+**解决**:
+- 以管理员身份运行PowerShell
+- 或以管理员身份运行Node.js脚本
 
 ---
 
@@ -207,29 +328,99 @@ MIT License - 详见 [LICENSE](LICENSE) 文件
 
 ---
 
+## 📦 Dependencies / 依赖要求
+
+### System Requirements
+
+#### Required Dependencies / 必需依赖
+- **Node.js**: >= 14.0.0
+  - For running JavaScript modules
+  - Supports ES6 import syntax
+  - Windows native module support
+
+#### Operating System / 操作系统
+- **Windows**: Windows 10/11 (win32)
+  - Windows PowerShell (for executing system commands)
+  - Administrator permissions (for some operations)
+
+#### Optional Dependencies / 可选依赖
+- **OpenClaw**: OpenClaw system (recommended)
+  - For skill integration and auto-discovery
+  - Provides \_meta.json metadata configuration
+  - Enhances skill management and invocation
+
+### Dependency Details / 依赖详情
+
+#### Node.js Module Dependencies / Node.js模块依赖
+```javascript
+// Built-in modules (no npm install needed)
+import fs from 'fs';        // File system operations
+import path from 'path';    // Path handling
+```
+
+**Explanation / 说明**: 
+- Uses Node.js built-in modules, no extra installation needed
+- `fs` module for reading/writing EXPERIENCES.md database
+- `path` module for handling file paths
+
+#### PowerShell Command Dependencies / PowerShell命令依赖
+```powershell
+# Process management operations
+Get-Process | Stop-Process -Force
+
+# File operations
+Copy-Item, Move-Item, Remove-Item
+
+# System service operations
+Get-Service, Start-Service, Stop-Service
+```
+
+**Explanation / 说明**:
+- Depends on Windows PowerShell command execution
+- Requires Windows native system support
+- Called through Node.js `child_process` module
+
+---
+
 ## 📥 Installation Tutorial
 
-### OpenClaw Skill Installation
+### Method 1: Manual Installation (Recommended)
 
-#### 1. Download Project
+#### 1. Check Dependency Environment
+```bash
+# Check Node.js version
+node --version  # Should be >= 14.0.0
+
+# Check PowerShell
+powershell -Command "Get-Host"  # Confirm PowerShell is available
+
+# Check permissions (if needed, right-click and select "Run as Administrator")
+```
+
+#### 2. Download Project
 ```bash
 git clone https://github.com/VirgoLeo1/windows-control.git
 cd windows-control
 ```
 
-#### 2. Install to OpenClaw
+#### 3. Copy Skill Files
 ```bash
 # Copy to OpenClaw skills directory
+# Windows path example:
 xcopy /E /I windows-control "C:\Users\[Your Username]\.openclaw\workspace\skills\windows-control"
 ```
 
-#### 3. Verify OpenClaw Skill
+#### 4. Verify Installation
 ```bash
 # Check skill files
 dir "C:\Users\[Your Username]\.openclaw\workspace\skills\windows-control"
+
+# Run tests to verify
+npm test
 ```
 
 You should see the following files:
+- ✅ package.json (Dependency configuration)
 - ✅ SKILL.md (OpenClaw skill definition)
 - ✅ EXPERIENCES.md (Experience database)
 - ✅ _meta.json (Skill metadata)
@@ -241,19 +432,9 @@ You should see the following files:
 
 ## 📖 Usage Tutorial
 
-### OpenClaw Integrated Usage
+### Basic Usage Examples
 
-#### 1. Using in OpenClaw
-```
-OpenClaw Skill: windows-control
-
-Operation Mode:
-- Auto Learning: Read experience before use, record learning after use
-- Universal Control: Supports process, file, service operations
-- Self Evolution: Every operation produces learning value
-```
-
-#### 2. Basic Operation Examples
+#### 1. Process Management
 ```javascript
 import { WindowsController } from './windows-controller.mjs';
 
@@ -262,8 +443,34 @@ const controller = new WindowsController();
 // Stop process (automatic learning)
 await controller.manageProcess('stop', 'testapp');
 
-// File operations
+// System will automatically:
+// 1. Read relevant experiences
+// 2. Apply best practices
+// 3. Execute operation
+// 4. Record learning results
+```
+
+#### 2. File Operations
+```javascript
+// Copy file
 await controller.manageFile('copy', 'source.txt', 'destination.txt');
+
+// Delete file
+await controller.manageFile('delete', 'old_file.txt');
+
+// Move file  
+await controller.manageFile('move', 'old_location.txt', 'new_location.txt');
+```
+
+#### 3. View Learning Process
+```javascript
+// View current experiences
+const experiences = controller.readExperiences();
+console.log('Learned experiences:', experiences);
+
+// Get relevant suggestions
+const suggestions = controller.getSuggestions('process management');
+console.log('Operation suggestions:', suggestions);
 ```
 
 ---
@@ -296,6 +503,41 @@ User Request → Read Experience → Apply Best Practices → Execute Operation 
 - Records experiences with every invocation
 - Intelligent decision making and suggestions
 - Continuously optimizes skill performance
+
+---
+
+## 🔧 Troubleshooting / 故障排查
+
+### Dependency Issues / 依赖问题
+
+#### Issue 1: Node.js version too low
+**Error**: Module import syntax not supported  
+**Solution**: 
+```bash
+# Upgrade Node.js to 14.0+
+# Visit: https://nodejs.org
+node --version  # Verify version
+```
+
+#### Issue 2: PowerShell not responding
+**Error**: child_process cannot execute PowerShell commands  
+**Solution**:
+```powershell
+# Confirm PowerShell is available
+powershell -Command "Get-Host"
+
+# Check execution policy
+powershell -Command "Get-ExecutionPolicy"
+
+# If needed, execute (requires admin privileges)
+powershell -Command "Set-ExecutionPolicy RemoteSigned"
+```
+
+#### Issue 3: Insufficient permissions
+**Error**: Cannot perform certain system operations  
+**Solution**:
+- Run PowerShell as administrator
+- Or run Node.js script as administrator
 
 ---
 

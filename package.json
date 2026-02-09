@@ -1,0 +1,43 @@
+{
+  "name": "windows-control",
+  "version": "1.0.0",
+  "description": "通用Windows系统控制技能，具备自动学习和自我进化能力 (Universal Windows system control skill with automatic learning and self-evolution)",
+  "main": "windows-controller.mjs",
+  "author": "lily (AIfriend) & VirgoLiant",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "windows",
+    "control",
+    "automation",
+    "auto-learning",
+    "self-evolution",
+    "process-management",
+    "file-operations",
+    "system-control"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "openclaw": {
+    "skill": true,
+    "type": "system-control",
+    "version": "1.0.0",
+    "priority": 100
+  },
+  "scripts": {
+    "test": "node auto-learn.mjs",
+    "start": "node windows-controller.mjs",
+    "verify": "node -e \"import('./windows-controller.mjs').then(async (m) => { const c = new m.WindowsController(); console.log('✅ Windows-Control skill verified'); })\""
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "os": [
+    "win32"
+  ],
+  "platform": {
+    "os": "win32"
+  }
+}
