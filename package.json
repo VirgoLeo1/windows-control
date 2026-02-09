@@ -3,17 +3,12 @@
   "version": "1.0.0",
   "description": "通用Windows系统控制技能，具备自动学习和自我进化能力 (Universal Windows system control skill with automatic learning and self-evolution)",
   "main": "windows-controller.mjs",
-  "bin": {
-    "install-windows-control": "./install.mjs"
-  },
   "author": "lily (AIfriend) & VirgoLiant",
   "license": "MIT",
   "type": "module",
-  "install": "node install.mjs",
   "keywords": [
     "openclaw",
     "skill",
-    "clawhub",
     "windows",
     "control",
     "automation",
@@ -30,15 +25,7 @@
     "skill": true,
     "type": "system-control",
     "version": "1.0.0",
-    "priority": 100,
-    "clawhub": {
-      "name": "windows-control",
-      "displayName": "Windows System Control",
-      "description": "Universal Windows system control with automatic learning",
-      "icon": "🖥️",
-      "category": "system",
-      "tags": ["windows", "automation", "auto-learning", "system-control"]
-    }
+    "priority": 100
   },
   "scripts": {
     "install": "node install.mjs",
@@ -56,6 +43,7 @@
     "_meta.json",
     "README.md",
     "INSTALL.md",
+    "INSTALL_QUICK.md",
     "USAGE.md",
     "DEPENDENCIES.md",
     "LICENSE",
