@@ -1,0 +1,33 @@
+{
+  "name": "windows-control",
+  "version": "2.0.0",
+  "description": "通用Windows系统控制技能，具备自动学习和自我进化能力。每次使用前自动读取经验，使用后自动学习优化。",
+  "author": "GatekeeperAI",
+  "tags": ["windows", "system", "control", "process", "auto-learning"],
+  "requires": ["powershell", "exec"],
+  "auto_learning": true,
+  "learning_files": ["EXPERIENCES.md"],
+  "learning_frequency": "every_use",
+  "capabilities": [
+    "进程管理",
+    "文件系统操作",
+    "系统服务控制",
+    "网络配置",
+    "系统信息查询",
+    "问题排查和解决"
+  ],
+  "principles": [
+    "通用性优先 - 不针对特定软件",
+    "可重用性 - 操作可组合复用",
+    "安全性 - 权限控制和风险提示",
+    "可回滚 - 考虑操作恢复方案",
+    "学习导向 - 每次操作都是学习机会"
+  ],
+  "integrates_with": ["daily-evolution"],
+  "metadata": {
+    "created": "2026-02-09",
+    "last_updated": "2026-02-09 21:25",
+    "learning_status": "active",
+    "experience_count": "initial"
+  }
+}
