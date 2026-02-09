@@ -1,10 +1,19 @@
-﻿# Windows-Control 通用系统控制技能
+# Windows-Control 通用系统控制技能
+
+---
+
+## 🌐 Language / 语言
+
+[English](#english-version) | [中文](#中文版本)
+
+---
 
 ## 🌟 项目介绍
 
-**Windows-Control** 是一个具备自动学习和自我进化能力的通用Windows系统控制技能。它专注于操作系统层面的通用控制，不针对特定软件定制，每次使用前自动读取经验，使用后自动学习优化。
+**Windows-Control** 是一个具备自动学习和自我进化能力的通用Windows系统控制技能。
 
 **版本**: 1.0.0  
+**类型**: OpenClaw Skill  
 **作者**: lily (AIfriend) & VirgoLiant  
 **协议**: MIT License  
 **状态**: 生产就绪
@@ -23,19 +32,17 @@
 - **文件操作**: 文件复制、移动、删除
 - **系统服务**: 服务状态查询和控制
 - **网络配置**: 网络状态检查和配置
-- **系统信息**: 系统参数收集和分析
 
 ### 🛡️ 安全可靠
 - **通用性原则**: 不针对特定软件，适用性广泛
 - **权限检查**: 自动验证操作权限
 - **风险提示**: 基于经验的智能风险识别
-- **回滚策略**: 关键操作的备份和恢复建议
 
 ---
 
 ## 📥 安装教程
 
-### 方式一：手动安装（推荐）
+### OpenClaw技能安装
 
 #### 1. 下载项目
 ```bash
@@ -43,34 +50,43 @@ git clone https://github.com/VirgoLeo1/windows-control.git
 cd windows-control
 ```
 
-#### 2. 复制技能文件
+#### 2. 安装到OpenClaw
 ```bash
 # 复制到OpenClaw技能目录
-# Windows路径示例：
 xcopy /E /I windows-control "C:\Users\[你的用户名]\.openclaw\workspace\skills\windows-control"
 ```
 
-#### 3. 验证安装
+#### 3. 验证OpenClaw技能
 ```bash
 # 检查技能文件
 dir "C:\Users\[你的用户名]\.openclaw\workspace\skills\windows-control"
-
-# 应该看到以下文件：
-# SKILL.md
-# EXPERIENCES.md
-# _meta.json
-# auto-learn.mjs
-# windows-controller.mjs
-# README.md
 ```
+
+应该看到以下文件：
+- ✅ SKILL.md (OpenClaw技能定义)
+- ✅ EXPERIENCES.md (经验库)
+- ✅ _meta.json (技能元数据)
+- ✅ auto-learn.mjs (自动学习系统)
+- ✅ windows-controller.mjs (控制器)
+- ✅ README.md (项目文档)
 
 ---
 
 ## 📖 使用教程
 
-### 基础使用示例
+### OpenClaw集成使用
 
-#### 1. 进程管理
+#### 1. 在OpenClaw中使用
+```
+OpenClaw技能: windows-control
+
+功能模式:
+- 自动学习: 使用前读取经验，使用后记录学习
+- 通用控制: 支持进程、文件、服务等操作
+- 自我进化: 每次操作都产生学习价值
+```
+
+#### 2. 基础操作示例
 ```javascript
 import { WindowsController } from './windows-controller.mjs';
 
@@ -79,34 +95,8 @@ const controller = new WindowsController();
 // 停止进程（自动学习）
 await controller.manageProcess('stop', 'testapp');
 
-// 系统会自动：
-// 1. 读取相关经验
-// 2. 应用最佳实践
-// 3. 执行操作
-// 4. 记录学习结果
-```
-
-#### 2. 文件操作
-```javascript
-// 复制文件
+// 文件操作
 await controller.manageFile('copy', 'source.txt', 'destination.txt');
-
-// 删除文件
-await controller.manageFile('delete', 'old_file.txt');
-
-// 移动文件  
-await controller.manageFile('move', 'old_location.txt', 'new_location.txt');
-```
-
-#### 3. 查看学习过程
-```javascript
-// 查看当前经验
-const experiences = controller.readExperiences();
-console.log('已学到的经验:', experiences);
-
-// 获取相关建议
-const suggestions = controller.getSuggestions('进程管理');
-console.log('操作建议:', suggestions);
 ```
 
 ---
@@ -126,27 +116,19 @@ console.log('操作建议:', suggestions);
 
 ---
 
-## 🎯 使用场景
+## 🎯 OpenClaw技能特点
 
-### 1. 系统管理
-管理后台进程，自动学习识别和停止方式
+### ✅ 完全兼容OpenClaw
+- 标准OpenClaw技能格式
+- 支持\_meta.json元数据配置
+- 兼容OpenClaw技能发现机制
+- 可被OpenClaw调用和管理
 
-### 2. 文件清理
-清理临时文件，学习文件模式和安全删除方法
-
-### 3. 自动化脚本
-批量文件操作，每次操作都积累经验
-
----
-
-## 📊 进化效果
-
-| 学习阶段 | 操作成功率 | 操作时间 | 经验条目 |
-|----------|-----------|----------|----------|
-| 初始状态 | 70% | 5分钟 | 0条 |
-| 使用1周 | 85% | 3分钟 | 50条 |
-| 使用1月 | 95% | 1分钟 | 200条 |
-| 使用3月+ | 99% | 30秒 | 500条+ |
+### ✅ 自动学习能力
+- 与OpenClaw协同工作
+- 每次调用都记录经验
+- 智能化决策和建议
+- 持续优化技能性能
 
 ---
 
@@ -166,14 +148,6 @@ MIT License - 详见 [LICENSE](LICENSE) 文件
 
 ---
 
-## 🙏 致谢
-
-- 感谢OpenClaw社区的支持
-- 感谢所有贡献者和测试者
-- 感谢GitHub平台
-
----
-
 ## 📞 联系方式
 
 - 项目主页: https://github.com/VirgoLeo1/windows-control
@@ -182,4 +156,172 @@ MIT License - 详见 [LICENSE](LICENSE) 文件
 
 ---
 
-*Windows-Control - 让Windows控制变得智能化！* 🚀
+*Windows-Control - 让Windows控制变得智能化！*  
+*OpenClaw Skill v1.0.0* 🚀
+
+---
+
+<div id="english-version"></div>
+
+---
+
+# Windows-Control Universal System Control Skill
+
+---
+
+## 🌐 Language / 语言
+
+[English](#english-version) | [中文](#中文版本)
+
+---
+
+## 🌟 Project Overview
+
+**Windows-Control** is a universal Windows system control skill with automatic learning and self-evolution capabilities.
+
+**Version**: 1.0.0  
+**Type**: OpenClaw Skill  
+**Authors**: lily (AIfriend) & VirgoLiant  
+**License**: MIT License  
+**Status**: Production Ready
+
+---
+
+## 🎯 Core Features
+
+### ✨ Automatic Learning System
+- **Before Use**: Automatically reads relevant experiences and applies best practices
+- **After Use**: Automatically records operation results and accumulates learning experiences
+- **Continuous Evolution**: Becomes smarter and more efficient with each use
+
+### 🔧 Universal Operation Support
+- **Process Management**: Process discovery, stopping, and launching
+- **File Operations**: File copying, moving, and deletion
+- **System Services**: Service status queries and control
+- **Network Configuration**: Network status checking and configuration
+
+### 🛡️ Safe and Reliable
+- **Universality Principle**: Not targeted at specific software, wide applicability
+- **Permission Check**: Automatically validates operation permissions
+- **Risk Warnings**: Intelligent risk identification based on experience
+
+---
+
+## 📥 Installation Tutorial
+
+### OpenClaw Skill Installation
+
+#### 1. Download Project
+```bash
+git clone https://github.com/VirgoLeo1/windows-control.git
+cd windows-control
+```
+
+#### 2. Install to OpenClaw
+```bash
+# Copy to OpenClaw skills directory
+xcopy /E /I windows-control "C:\Users\[Your Username]\.openclaw\workspace\skills\windows-control"
+```
+
+#### 3. Verify OpenClaw Skill
+```bash
+# Check skill files
+dir "C:\Users\[Your Username]\.openclaw\workspace\skills\windows-control"
+```
+
+You should see the following files:
+- ✅ SKILL.md (OpenClaw skill definition)
+- ✅ EXPERIENCES.md (Experience database)
+- ✅ _meta.json (Skill metadata)
+- ✅ auto-learn.mjs (Automatic learning system)
+- ✅ windows-controller.mjs (Controller)
+- ✅ README.md (Project documentation)
+
+---
+
+## 📖 Usage Tutorial
+
+### OpenClaw Integrated Usage
+
+#### 1. Using in OpenClaw
+```
+OpenClaw Skill: windows-control
+
+Operation Mode:
+- Auto Learning: Read experience before use, record learning after use
+- Universal Control: Supports process, file, service operations
+- Self Evolution: Every operation produces learning value
+```
+
+#### 2. Basic Operation Examples
+```javascript
+import { WindowsController } from './windows-controller.mjs';
+
+const controller = new WindowsController();
+
+// Stop process (automatic learning)
+await controller.manageProcess('stop', 'testapp');
+
+// File operations
+await controller.manageFile('copy', 'source.txt', 'destination.txt');
+```
+
+---
+
+## 🧠 Automatic Learning Mechanism
+
+### Learning System Flow
+```
+User Request → Read Experience → Apply Best Practices → Execute Operation → Record Results → Learn & Optimize
+```
+
+### Core Functions
+- **Experience Accumulation**: Learning with every operation
+- **Pattern Recognition**: Identifying successful patterns from history
+- **Risk Identification**: Identifying risks based on failed experiences
+- **Continuous Optimization**: Constantly improving operation methods
+
+---
+
+## 🎯 OpenClaw Skill Features
+
+### ✅ Fully Compatible with OpenClaw
+- Standard OpenClaw skill format
+- Supports \_meta.json metadata configuration
+- Compatible with OpenClaw skill discovery mechanism
+- Can be called and managed by OpenClaw
+
+### ✅ Automatic Learning Capability
+- Works collaboratively with OpenClaw
+- Records experiences with every invocation
+- Intelligent decision making and suggestions
+- Continuously optimizes skill performance
+
+---
+
+## 👥 Author Information
+
+**lily (AIfriend)**  
+AI researcher and enthusiast, focused on intelligent systems and automation tools
+
+**VirgoLiant**  
+Technical expert, responsible for system design and implementation
+
+---
+
+## 📄 License
+
+MIT License - See [LICENSE](LICENSE) file for details
+
+---
+
+## 📞 Contact
+
+- Project Home: https://github.com/VirgoLeo1/windows-control
+- Issue Feedback: https://github.com/VirgoLeo1/windows-control/issues
+- Discussions: https://github.com/VirgoLeo1/windows-control/discussions
+
+---
+
+*Windows-Control - Making Windows Control Intelligent!*  
+*OpenClaw Skill v1.0.0* 🚀
