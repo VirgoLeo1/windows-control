@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "description": "通用Windows系统控制技能，具备自动学习和自我进化能力 (Universal Windows system control skill with automatic learning and self-evolution)",
   "main": "windows-controller.mjs",
+  "bin": {
+    "install-windows-control": "./install.mjs"
+  },
   "author": "lily (AIfriend) & VirgoLiant",
   "license": "MIT",
   "type": "module",
+  "install": "node install.mjs",
   "keywords": [
     "openclaw",
     "skill",
+    "clawhub",
     "windows",
     "control",
     "automation",
@@ -25,13 +30,37 @@
     "skill": true,
     "type": "system-control",
     "version": "1.0.0",
-    "priority": 100
+    "priority": 100,
+    "clawhub": {
+      "name": "windows-control",
+      "displayName": "Windows System Control",
+      "description": "Universal Windows system control with automatic learning",
+      "icon": "🖥️",
+      "category": "system",
+      "tags": ["windows", "automation", "auto-learning", "system-control"]
+    }
   },
   "scripts": {
+    "install": "node install.mjs",
     "test": "node auto-learn.mjs",
     "start": "node windows-controller.mjs",
-    "verify": "node -e \"import('./windows-controller.mjs').then(async (m) => { const c = new m.WindowsController(); console.log('✅ Windows-Control skill verified'); })\""
+    "verify": "node -e \"import('./windows-controller.mjs').then(async (m) => { const c = new m.WindowsController(); console.log('✅ Windows-Control skill verified'); })\"",
+    "uninstall": "node -e \"import('fs').then(fs => { const path = 'C:/Users/' + process.env.USERNAME + '/.openclaw/workspace/skills/windows-control'; if (fs.existsSync(path)) { fs.rmSync(path, {recursive: true, force: true}); console.log('✅ Windows-Control skill uninstalled'); } })\""
   },
+  "files": [
+    "install.mjs",
+    "auto-learn.mjs",
+    "windows-controller.mjs",
+    "SKILL.md",
+    "EXPERIENCES.md",
+    "_meta.json",
+    "README.md",
+    "INSTALL.md",
+    "USAGE.md",
+    "DEPENDENCIES.md",
+    "LICENSE",
+    "package.json"
+  ],
   "dependencies": {},
   "devDependencies": {},
   "os": [
@@ -39,5 +68,13 @@
   ],
   "platform": {
     "os": "win32"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VirgoLeo1/windows-control.git"
+  },
+  "homepage": "https://github.com/VirgoLeo1/windows-control",
+  "bugs": {
+    "url": "https://github.com/VirgoLeo1/windows-control/issues"
   }
 }
