@@ -1,4 +1,4 @@
-// Windows-Control 通用系统控制器（整合自动学习）
+﻿// Windows-Control 通用系统控制器（整合自动学习）
 import fs from 'fs';
 import path from 'path';
 

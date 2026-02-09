@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "windows-control",
   "version": "2.0.0",
   "description": "通用Windows系统控制技能，具备自动学习和自我进化能力。每次使用前自动读取经验，使用后自动学习优化。",

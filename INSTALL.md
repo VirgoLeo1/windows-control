@@ -1,4 +1,4 @@
-# Windows-Control 安装教程
+﻿# Windows-Control 安装教程
 
 ## 🚀 快速开始
 

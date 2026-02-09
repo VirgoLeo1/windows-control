@@ -1,4 +1,4 @@
-// Windows-Control 自动学习系统
+﻿// Windows-Control 自动学习系统
 import fs from 'fs';
 import path from 'path';
 

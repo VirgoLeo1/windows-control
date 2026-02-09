@@ -1,4 +1,4 @@
-# Windows-Control 使用教程
+﻿# Windows-Control 使用教程
 
 ## 📚 基础概念
 
